@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+const url = localStorage.getItem('SubscriberAPIAddress');
 
 export class SubscriberInfo extends Component {
     state = {
-        subscriber: null,
         subNumber: '',
-        mounted: false
+        mounted: false,
+        edit: false,
+        firstname: '',
+        lastname: '',
+        phonenumber: '',
+        address: '',
+        zipcode: '',
+        city: ''
     }
 
     componentDidMount() {
@@ -16,11 +23,16 @@ export class SubscriberInfo extends Component {
 
     getInfo = () => {
         if (this.state.mounted && this.state.subNumber) {
-            const url = localStorage.getItem('SubscriberAPIAddress');
             Axios.get(url + '/api/subscribers/get/' + this.state.subNumber)
                 .then(res => {
                     this.setState({
-                        subscriber: res.data
+                        id: res.data._id,
+                        firstname: res.data.firstname,
+                        lastname: res.data.lastname,
+                        phonenumber: res.data.phonenumber,
+                        address: res.data.address,
+                        zipcode: res.data.zipcode,
+                        city: res.data.city
                     })
                 });
         }
@@ -47,9 +59,49 @@ export class SubscriberInfo extends Component {
         })
     }
 
+    handleTextinput = (e) => {
+        console.log(this.state)
+        this.setState({
+            [e.target.name]: [e.target.value]
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { id, firstname, lastname, phonenumber, address, zipcode, city } = this.state;
+        Axios.put(url + '/api/subscribers/update',
+            { id, firstname, lastname, phonenumber, address, zipcode, city })
+            .then(res => { console.log(res) });
+    }
+    renderEdit = () => {
+        if (this.state.edit) {
+            const { firstname, lastname, phonenumber, address, zipcode, city } = this.state;
+            return (
+                <div className="subscriberInfo">
+                    <form onSubmit={this.handleSubmit}>
+                        <input name="firstname" type="text" value={firstname} onChange={this.handleTextinput} /> <br />
+                        <input name="lastname" type="text" value={lastname} onChange={this.handleTextinput} /><br />
+                        <input name="phonenumber" type="text" value={phonenumber} onChange={this.handleTextinput} /><br />
+                        <input name="address" type="text" value={address} onChange={this.handleTextinput} /><br />
+                        <input name="zipcode" type="text" value={zipcode} onChange={this.handleTextinput} /><br />
+                        <input name="city" type="text" value={city} onChange={this.handleTextinput} /><br />
+                        <button onClick={this.handleEdit}>Back</button>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            )
+        }
+    }
+
+    handleEdit = () => {
+        this.setState({
+            edit: !this.state.edit
+        })
+    }
+
     renderInfo = () => {
-        if (this.state.subscriber) {
-            const { firstname, lastname, phonenumber, address, zipcode, city } = this.state.subscriber;
+        if (this.state.firstname && !this.state.edit) {
+            const { firstname, lastname, phonenumber, address, zipcode, city } = this.state;
             return (
                 <div className="subscriberInfo">
                     <p>{firstname}</p>
@@ -58,7 +110,7 @@ export class SubscriberInfo extends Component {
                     <p>{address}</p>
                     <p>{zipcode}</p>
                     <p>{city}</p>
-                    <button onClick={this.editInfo}>Edit</button>
+                    <button onClick={this.handleEdit}>Edit</button>
                 </div>
             )
         }
@@ -77,6 +129,7 @@ export class SubscriberInfo extends Component {
                 {this.state.subNumber}
                 <h1>Subscriber Info</h1>
                 {this.renderInfo()}
+                {this.renderEdit()}
             </div>
         )
     }
