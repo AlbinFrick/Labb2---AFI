@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import SubscriberInfo from './SubscriberInfo';
+import CompanyInfo from './CompanyInfo';
 
 export class CreateAd extends Component {
     state = {
@@ -27,9 +27,7 @@ export class CreateAd extends Component {
     renderCompanyForm = () => {
         if (this.state.subscriber === 'false') {
             return (
-                <div>
-                    <h1>Company</h1>
-                </div>
+                <CompanyInfo />
             )
         }
     }

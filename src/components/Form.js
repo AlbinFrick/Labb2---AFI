@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 
 export class Form extends Component {
     state = {
-        title: '',
+        subscriber: {
+            firstname: 'oscar'
+        },
+        title: 'Oscar',
         price: '',
         content: '',
         adPrice: '',
@@ -29,7 +32,7 @@ export class Form extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <input
                             name="title"
-                            value={this.state.title}
+                            value={this.state.subscriber.firstname}
                             onChange={this.handleChange}
                             placeholder="Title"
                             className="input1"

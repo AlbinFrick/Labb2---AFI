@@ -72,7 +72,11 @@ export class SubscriberInfo extends Component {
         Axios.put(url + '/api/subscribers/update',
             { id, firstname, lastname, phonenumber, address, zipcode, city })
             .then(res => { console.log(res) });
+        this.setState({
+            edit: !this.state.edit
+        })
     }
+
     renderEdit = () => {
         if (this.state.edit) {
             const { firstname, lastname, phonenumber, address, zipcode, city } = this.state;
@@ -85,7 +89,6 @@ export class SubscriberInfo extends Component {
                         <input name="address" type="text" value={address} onChange={this.handleTextinput} /><br />
                         <input name="zipcode" type="text" value={zipcode} onChange={this.handleTextinput} /><br />
                         <input name="city" type="text" value={city} onChange={this.handleTextinput} /><br />
-                        <button onClick={this.handleEdit}>Back</button>
                         <button type="submit">Submit</button>
                     </form>
                 </div>
@@ -126,7 +129,6 @@ export class SubscriberInfo extends Component {
         return (
             <div>
                 {this.renderSubNr()}
-                {this.state.subNumber}
                 <h1>Subscriber Info</h1>
                 {this.renderInfo()}
                 {this.renderEdit()}
