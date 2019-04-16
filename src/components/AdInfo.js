@@ -4,17 +4,14 @@ const url = localStorage.getItem('AdvertAPIAddress');
 
 export class AdInfo extends Component {
 	state = {
-		adverts: null
+		title: '',
+		content: '',
+		adPrice: null,
+		price: null,
+		postedBy: '',
+		subscriber: '',
+		mounted: ''
 	};
-
-	componentDidMount() {
-		Axios.get(url + '/api/adverts/get').then(res => {
-			console.log(res.data);
-			this.setState({
-				adverts: res.data
-			});
-		});
-	}
 
 	handleTextinput = e => {
 		this.setState({
@@ -24,14 +21,9 @@ export class AdInfo extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		const {
-			title,
-			content,
-			adPrice,
-			price,
-			postedBy,
-			subscriber
-		} = this.state;
+		console.log('hellko');
+		const { title, content, adPrice, price } = this.state;
+		const { postedBy, subscriber } = this.props;
 		Axios.post(url + '/api/adverts/add', {
 			title,
 			content,
@@ -69,7 +61,7 @@ export class AdInfo extends Component {
 					<br />
 					<input
 						name="price"
-						type="text"
+						type="number"
 						placeholder="price"
 						onChange={this.handleTextinput}
 					/>
@@ -80,16 +72,10 @@ export class AdInfo extends Component {
 						placeholder="Price for your product"
 						onChange={this.handleTextinput}
 					/>
-					<br />
-					<input
-						name="postedBy"
-						type="text"
-						placeholder="postedBy"
-						onChange={this.handleTextinput}
-					/>
-
 					<button type="submit">Submit</button>
 				</form>
+				<p>{this.state.subscriber}</p>
+				<p>{this.state.postedBy}</p>
 			</div>
 		);
 	}

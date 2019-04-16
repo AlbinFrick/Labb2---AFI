@@ -6,7 +6,14 @@ import AdInfo from './AdInfo';
 export class CreateAd extends Component {
 	state = {
 		subscriber: 0,
-		gettingSub: false
+		gettingSub: false,
+		postedBy: null
+	};
+
+	changePostedBy = id => {
+		this.setState({
+			postedBy: id
+		});
 	};
 
 	handleSubChange = e => {
@@ -17,19 +24,29 @@ export class CreateAd extends Component {
 
 	renderSubScriberInfo = () => {
 		if (this.state.subscriber === 'true') {
-			return <SubscriberInfo subNumber={this.state.subNumber} />;
+			return (
+				<SubscriberInfo
+					subNumber={this.state.subNumber}
+					changePostedBy={this.changePostedBy}
+				/>
+			);
 		}
 	};
 
 	renderCompanyForm = () => {
 		if (this.state.subscriber === 'false') {
-			return <CompanyInfo />;
+			return <CompanyInfo changePostedBy={this.changePostedBy} />;
 		}
 	};
 
 	renderAdvertForm = () => {
 		if (this.state.subscriber !== 0) {
-			return <AdInfo />;
+			return (
+				<AdInfo
+					subscriber={this.state.subscriber}
+					postedBy={this.state.postedBy}
+				/>
+			);
 		}
 	};
 
