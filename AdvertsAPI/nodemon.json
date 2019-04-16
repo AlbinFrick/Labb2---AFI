@@ -1,0 +1,6 @@
+{
+    "env": {
+        "MONGODB_PW": "password",
+        "PORT": 5000
+    }
+}
