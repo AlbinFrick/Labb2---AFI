@@ -21,9 +21,12 @@ export class AdInfo extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log('hellko');
-		const { title, content, adPrice, price } = this.state;
+		const { title, content, adPrice } = this.state;
 		const { postedBy, subscriber } = this.props;
+		let price = 0;
+		if (subscriber === 'false') {
+			price = 40;
+		}
 		Axios.post(url + '/api/adverts/add', {
 			title,
 			content,
@@ -33,7 +36,7 @@ export class AdInfo extends Component {
 			subscriber
 		})
 			.then(res => {
-				console.log(res);
+				console.log('New advert created');
 			})
 			.catch(err => {
 				console.log(err);
@@ -56,13 +59,6 @@ export class AdInfo extends Component {
 						name="content"
 						type="text"
 						placeholder="Content"
-						onChange={this.handleTextinput}
-					/>
-					<br />
-					<input
-						name="price"
-						type="number"
-						placeholder="price"
 						onChange={this.handleTextinput}
 					/>
 					<br />

@@ -44,7 +44,6 @@ router.post('/api/adverts/add', (req, res, next) => {
 	advert
 		.save()
 		.then(result => {
-			console.log(result);
 			res.status(201).json({
 				message: 'Added advert successfully',
 				createdAdvert: advert

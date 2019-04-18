@@ -37,7 +37,6 @@ router.get('/api/companies/get/:id', (req, res, next) => {
 });
 
 router.post('/api/companies/add', (req, res, next) => {
-	console.log(req.body.company.name);
 	const company = new Company({
 		_id: new mongoose.Types.ObjectId(),
 		name: req.body.company.name,
@@ -62,7 +61,7 @@ router.post('/api/companies/add', (req, res, next) => {
 		.catch(err => console.log(err));
 	res.status(201).json({
 		message: 'Handling POST request to /adverts',
-		createdAdvert: company
+		createdCompany: company
 	});
 });
 

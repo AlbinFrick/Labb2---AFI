@@ -202,7 +202,6 @@ export class SubscriberInfo extends Component {
 		return (
 			<div>
 				{this.renderSubNr()}
-				<h1>Subscriber Info</h1>
 				{this.renderInfo()}
 				{this.renderEdit()}
 			</div>

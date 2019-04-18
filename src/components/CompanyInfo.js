@@ -4,7 +4,8 @@ const url = localStorage.getItem('AdvertAPIAddress');
 
 export class CompanyInfo extends Component {
 	state = {
-		companies: null
+		companies: null,
+		postedBy: null
 	};
 
 	componentDidMount() {
@@ -49,7 +50,8 @@ export class CompanyInfo extends Component {
 
 		Axios.post(url + '/api/companies/add', { company })
 			.then(res => {
-				console.log(res);
+				console.log(res.data.createdCompany._id);
+				this.props.changePostedBy(res.data.createdCompany._id);
 			})
 			.catch(err => {
 				console.log(err);
@@ -58,7 +60,7 @@ export class CompanyInfo extends Component {
 
 	renderCompanyForm = () => {
 		return (
-			<div className="subscriberInfo">
+			<div className="companyInfo">
 				<form onSubmit={this.handleSubmit}>
 					<input
 						name="name"
@@ -124,7 +126,7 @@ export class CompanyInfo extends Component {
 						onChange={this.handleTextinput}
 					/>
 					<br />
-					<button type="submit">Submit</button>
+					<button type="submit">OK</button>
 				</form>
 			</div>
 		);

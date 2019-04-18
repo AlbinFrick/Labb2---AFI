@@ -18,7 +18,8 @@ export class CreateAd extends Component {
 
 	handleSubChange = e => {
 		this.setState({
-			subscriber: e.target.value
+			subscriber: e.target.value,
+			postedBy: null
 		});
 	};
 
@@ -40,7 +41,7 @@ export class CreateAd extends Component {
 	};
 
 	renderAdvertForm = () => {
-		if (this.state.subscriber !== 0) {
+		if (this.state.subscriber !== 0 && this.state.postedBy) {
 			return (
 				<AdInfo
 					subscriber={this.state.subscriber}
@@ -53,6 +54,7 @@ export class CreateAd extends Component {
 	render() {
 		return (
 			<div>
+				<h4>Are you a subscriber?</h4>
 				<form className="subQuery">
 					<label>Yes</label>
 					<input
