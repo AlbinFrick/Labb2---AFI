@@ -28,16 +28,16 @@ export class AdInfo extends Component {
 		let titleErr = '';
 		let contentErr = '';
 		let priceErr = '';
-		if (!title) {
+		if (title.toString().length < 1) {
 			titleErr = 'This field is required';
-		} else if (title[0].length > 25) {
+		} else if (title.toString().length > 25) {
 			titleErr = 'The title must be under 25 chracters';
 		}
 
-		if (!content) {
+		if (content.toString().length < 1) {
 			contentErr = 'This area is required';
 		}
-		if (!price) {
+		if (price.toString().length < 1) {
 			priceErr = 'This field is required';
 		}
 		this.setState({ titleErr, priceErr, contentErr });
