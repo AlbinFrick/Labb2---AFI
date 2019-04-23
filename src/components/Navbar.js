@@ -11,7 +11,7 @@ class Navbar extends Component {
 				<ul>
 					<Link
 						style={
-							this.props.location.pathname == '/showAd'
+							this.props.location.pathname === '/showAd'
 								? {}
 								: {
 										border: 'rgba(209, 209, 209) solid 0.2vw',
@@ -27,7 +27,7 @@ class Navbar extends Component {
 					<Link
 						to="/showAd"
 						style={
-							this.props.location.pathname == '/showAd'
+							this.props.location.pathname === '/showAd'
 								? {
 										border: 'rgba(209, 209, 209) solid 0.2vw',
 										padding: '0vw',

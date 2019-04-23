@@ -16,6 +16,8 @@ nav h2 {
 	color: white;
 	display: inline-block;
 	border-bottom: dotted 0.6vw yellow;
+	font-family: 'Roboto', Courier, monospace;
+	font-weight: 200;
 }
 
 nav ul {

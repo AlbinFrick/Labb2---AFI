@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './ShowAds.css';
-import { timeout } from 'q';
 
 export class ShowAds extends Component {
 	state = {
