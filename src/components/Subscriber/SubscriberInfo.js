@@ -290,16 +290,26 @@ export class SubscriberInfo extends Component {
 			} = this.state;
 			return (
 				<div className="subscriberInfo">
-					<p>{firstname}</p>
-					<p>{lastname}</p>
-					<p>{phonenumber}</p>
-					<p>{address}</p>
-					<p>{zipcode}</p>
-					<p>{city}</p>
+					<div className="names">
+						<p>Name: </p>
+						<p>Phone number: </p>
+						<p>Address: </p>
+						<p>Zip code: </p>
+						<p>City: </p>
+					</div>
+					<div className="attributes">
+						<p>
+							{firstname} {lastname}
+						</p>
+						<p>{phonenumber}</p>
+						<p>{address}</p>
+						<p>{zipcode}</p>
+						<p>{city}</p>
+					</div>
 					<button onClick={this.handleEdit}>Edit</button>
 				</div>
 			);
-		} else if (this.state.subNumber) {
+		} else if (this.state.subNumber && !this.state.edit) {
 			return <p>No subscriber with that number</p>;
 		}
 	};
