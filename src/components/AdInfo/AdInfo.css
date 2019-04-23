@@ -1,3 +1,38 @@
-.adInfo {
-	background-color: red;
+.adInfo form {
+	width: auto;
+	margin: 2vw;
+	height: 60vh;
+	display: grid;
+	grid-row-gap: 2vw;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr 1fr 6fr 1fr;
+	grid-template-areas:
+		'title . . '
+		'price . .'
+		'cont cont cont'
+		'.  . button';
+}
+
+.adInfo form input,
+textarea {
+	padding: 0.5vw;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.adInfo form button {
+	grid-area: button;
+	margin: auto;
+}
+
+.adInfo .title {
+	grid-area: title;
+}
+
+.adInfo .price {
+	grid-area: price;
+}
+
+.adInfo .content {
+	grid-area: cont;
 }
