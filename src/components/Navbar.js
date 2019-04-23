@@ -7,6 +7,7 @@ class Navbar extends Component {
 	render() {
 		return (
 			<nav className="navbar">
+				<h2>AdService.cool</h2>
 				<ul>
 					<Link
 						style={

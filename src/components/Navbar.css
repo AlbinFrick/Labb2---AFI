@@ -1,9 +1,21 @@
 nav {
 	width: 100%;
-	height: auto;
+	height: 8vw;
 	background-color: rgb(40, 44, 55);
 	margin: 0;
 	padding: 0;
+}
+nav h2 {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	left: 1vw;
+	text-align: left;
+	top: 1.8vw;
+	font-size: 3vw;
+	color: white;
+	display: inline-block;
+	border-bottom: dotted 0.6vw yellow;
 }
 
 nav ul {
@@ -23,7 +35,7 @@ nav ul a {
 	display: inline-block;
 	width: 8vw;
 	height: 3vw;
-	margin: 1vw 2vw 1vw 2vw;
+	margin: 2vw;
 	background: rgba(209, 209, 209);
 	line-height: 3vw;
 	border-radius: 0.8vw;
