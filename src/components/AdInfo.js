@@ -10,7 +10,8 @@ export class AdInfo extends Component {
 		price: null,
 		postedBy: '',
 		subscriber: '',
-		mounted: ''
+		mounted: '',
+		titleErr: ''
 	};
 
 	handleTextinput = e => {
@@ -19,28 +20,54 @@ export class AdInfo extends Component {
 		});
 	};
 
+	validate = () => {
+		let { title, content, price } = this.state;
+		let titleErr = '';
+		let contentErr = '';
+		let priceErr = '';
+		if (!title) {
+			titleErr = 'This field is required';
+		} else if (title[0].length > 25) {
+			titleErr = 'The title must be under 25 chracters';
+		}
+
+		if (!content) {
+			contentErr = 'This field is required';
+		}
+		if (!price) {
+			priceErr = 'This field is required';
+		}
+		this.setState({ titleErr, priceErr, contentErr });
+		if (titleErr || priceErr || contentErr) {
+			return false;
+		}
+		return true;
+	};
+
 	handleSubmit = e => {
 		e.preventDefault();
-		const { title, content, adPrice } = this.state;
-		const { postedBy, subscriber } = this.props;
-		let price = 0;
-		if (subscriber === 'false') {
-			price = 40;
-		}
-		Axios.post(url + '/api/adverts/add', {
-			title,
-			content,
-			adPrice,
-			price,
-			postedBy,
-			subscriber
-		})
-			.then(res => {
-				console.log('New advert created');
+		if (this.validate()) {
+			const { title, content, price } = this.state;
+			const { postedBy, subscriber } = this.props;
+			let adPrice = 0;
+			if (subscriber === 'false') {
+				adPrice = 40;
+			}
+			Axios.post(url + '/api/adverts/add', {
+				title,
+				content,
+				adPrice,
+				price,
+				postedBy,
+				subscriber
 			})
-			.catch(err => {
-				console.log(err);
-			});
+				.then(res => {
+					console.log('New advert created');
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		}
 	};
 
 	render() {
@@ -54,6 +81,7 @@ export class AdInfo extends Component {
 						placeholder="Title"
 						onChange={this.handleTextinput}
 					/>
+					{this.state.titleErr}
 					<br />
 					<input
 						name="content"
@@ -61,17 +89,17 @@ export class AdInfo extends Component {
 						placeholder="Content"
 						onChange={this.handleTextinput}
 					/>
+					{this.state.contentErr}
 					<br />
 					<input
-						name="adPrice"
+						name="price"
 						type="number"
 						placeholder="Price for your product"
 						onChange={this.handleTextinput}
 					/>
+					{this.state.priceErr}
 					<button type="submit">Submit</button>
 				</form>
-				<p>{this.state.subscriber}</p>
-				<p>{this.state.postedBy}</p>
 			</div>
 		);
 	}

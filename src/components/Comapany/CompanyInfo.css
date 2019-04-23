@@ -1,0 +1,78 @@
+.companyInfo {
+	height: 70vh;
+}
+
+.companyInfo form {
+	width: 70vw;
+	margin: auto;
+	height: 100%;
+	display: grid;
+	grid-gap: 2vw;
+	grid-template-areas:
+		'.     payLabel   delLabel'
+		'name payAddress delAddress'
+		'org payZipCode delZipCode'
+		'phone payCity delCity'
+		'.   .         button';
+}
+
+.companyInfo form input {
+	padding: 0.5vw;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.companyInfo form button {
+	grid-area: button;
+	width: 50%;
+}
+
+.errorMessage {
+	width: auto;
+	height: auto;
+	color: red;
+}
+
+.name {
+	grid-area: name;
+}
+
+.orgNumber {
+	grid-area: org;
+}
+
+.phoneNumber {
+	grid-area: phone;
+}
+
+.payAddress {
+	grid-area: payAddress;
+}
+
+.payZipCode {
+	grid-area: payZipCode;
+}
+
+.payCity {
+	grid-area: payCity;
+}
+
+.delAddress {
+	grid-area: delAddress;
+}
+
+.delZipCode {
+	grid-area: delZipCode;
+}
+
+.delCity {
+	grid-area: delCity;
+}
+
+.payLabel {
+	grid-area: payLabel;
+}
+
+.delLabel {
+	grid-area: delLabel;
+}

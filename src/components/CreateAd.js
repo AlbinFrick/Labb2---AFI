@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SubscriberInfo from './SubscriberInfo';
-import CompanyInfo from './CompanyInfo';
+import SubscriberInfo from './Subscriber/SubscriberInfo';
+import CompanyInfo from './Comapany/CompanyInfo';
 import AdInfo from './AdInfo';
 
 export class CreateAd extends Component {
@@ -25,12 +25,7 @@ export class CreateAd extends Component {
 
 	renderSubScriberInfo = () => {
 		if (this.state.subscriber === 'true') {
-			return (
-				<SubscriberInfo
-					subNumber={this.state.subNumber}
-					changePostedBy={this.changePostedBy}
-				/>
-			);
+			return <SubscriberInfo changePostedBy={this.changePostedBy} />;
 		}
 	};
 

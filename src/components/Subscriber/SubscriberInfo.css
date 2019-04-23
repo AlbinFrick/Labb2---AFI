@@ -1,0 +1,54 @@
+.subNumberContainer form {
+	margin-top: 2vw;
+}
+.subNumberContainer form label {
+	margin-right: 3vw;
+}
+
+.subscriberInfo form {
+	width: 70vw;
+	height: auto;
+	margin: 3vw auto;
+	display: grid;
+	grid-gap: 2vw;
+	grid-template-areas:
+		'fname address'
+		'lname zipcode'
+		'phonenumber city'
+		'. button';
+}
+
+.subscriberInfo form input {
+	padding: 0.5vw;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.subscriberInfo form button {
+	grid-area: button;
+	width: 50%;
+}
+
+.firstname {
+	grid-area: fname;
+}
+
+.lastname {
+	grid-area: lname;
+}
+
+.phonenumber {
+	grid-area: phonenumber;
+}
+
+.address {
+	grid-area: address;
+}
+
+.zipcode {
+	grid-area: zipcode;
+}
+
+.city {
+	grid-area: city;
+}

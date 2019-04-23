@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import './SubscriberInfo.css';
 const url = localStorage.getItem('SubscriberAPIAddress');
 
 export class SubscriberInfo extends Component {
@@ -12,7 +13,8 @@ export class SubscriberInfo extends Component {
 		phonenumber: '',
 		address: '',
 		zipcode: '',
-		city: ''
+		city: '',
+		zipcodeErr: ''
 	};
 
 	componentDidMount() {
@@ -44,11 +46,11 @@ export class SubscriberInfo extends Component {
 
 	renderSubNr = () => {
 		return (
-			<div>
+			<div className="subNumberContainer">
 				<form onSubmit={e => e.preventDefault()}>
 					<label>Subscriber Number</label>
 					<input
-						type="text"
+						type="number"
 						value={this.state.subNumber}
 						onChange={this.updateSubNumber}
 					/>
@@ -65,16 +67,36 @@ export class SubscriberInfo extends Component {
 			() => {
 				if (this.state.subNumber && this.state.subNumber.length > 1) {
 					this.getInfo();
+				} else if (this.state.subNumber.length < 1) {
+					this.props.changePostedBy(null);
+					this.setState({
+						firstname: ''
+					});
 				}
 			}
 		);
 	};
 
 	handleTextinput = e => {
-		console.log(this.state);
 		this.setState({
 			[e.target.name]: [e.target.value]
 		});
+	};
+
+	validate = () => {
+		let { zipcode } = this.state;
+		let zipcodeErr = '';
+		if (zipcode[0].length < 4) {
+			zipcodeErr = 'The zipcode must be five numbers';
+		}
+		if (isNaN(zipcode[0])) {
+			zipcodeErr = 'The zipcode can only contain numbers';
+		}
+		this.setState({ zipcodeErr });
+		if (zipcodeErr) {
+			return false;
+		}
+		return true;
 	};
 
 	handleSubmit = e => {
@@ -88,20 +110,22 @@ export class SubscriberInfo extends Component {
 			zipcode,
 			city
 		} = this.state;
-		Axios.put(url + '/api/subscribers/update', {
-			id,
-			firstname,
-			lastname,
-			phonenumber,
-			address,
-			zipcode,
-			city
-		}).then(res => {
-			console.log(res);
-		});
-		this.setState({
-			edit: !this.state.edit
-		});
+		if (this.validate()) {
+			Axios.put(url + '/api/subscribers/update', {
+				id,
+				firstname,
+				lastname,
+				phonenumber,
+				address,
+				zipcode,
+				city
+			}).then(res => {
+				console.log(res);
+			});
+			this.setState({
+				edit: !this.state.edit
+			});
+		}
 	};
 
 	renderEdit = () => {
@@ -118,6 +142,7 @@ export class SubscriberInfo extends Component {
 				<div className="subscriberInfo">
 					<form onSubmit={this.handleSubmit}>
 						<input
+							className="firstname"
 							name="firstname"
 							type="text"
 							value={firstname}
@@ -125,6 +150,7 @@ export class SubscriberInfo extends Component {
 						/>{' '}
 						<br />
 						<input
+							className="lastname"
 							name="lastname"
 							type="text"
 							value={lastname}
@@ -132,13 +158,15 @@ export class SubscriberInfo extends Component {
 						/>
 						<br />
 						<input
+							className="phonenumber"
 							name="phonenumber"
-							type="text"
+							type="number"
 							value={phonenumber}
 							onChange={this.handleTextinput}
 						/>
 						<br />
 						<input
+							className="address"
 							name="address"
 							type="text"
 							value={address}
@@ -146,13 +174,16 @@ export class SubscriberInfo extends Component {
 						/>
 						<br />
 						<input
+							className="zipcode"
 							name="zipcode"
 							type="text"
 							value={zipcode}
 							onChange={this.handleTextinput}
 						/>
+						{this.state.zipcodeErr}
 						<br />
 						<input
+							className="city"
 							name="city"
 							type="text"
 							value={city}
@@ -173,7 +204,7 @@ export class SubscriberInfo extends Component {
 	};
 
 	renderInfo = () => {
-		if (this.state.firstname && !this.state.edit) {
+		if (this.state.subNumber && this.state.firstname && !this.state.edit) {
 			const {
 				firstname,
 				lastname,
