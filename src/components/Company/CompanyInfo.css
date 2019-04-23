@@ -3,7 +3,7 @@
 }
 
 .companyInfo form {
-	width: 70vw;
+	width: auto;
 	margin: auto;
 	height: 100%;
 	display: grid;

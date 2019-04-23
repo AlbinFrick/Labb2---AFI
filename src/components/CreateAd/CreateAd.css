@@ -1,0 +1,12 @@
+.createAd {
+	display: grid;
+	grid-template-areas: 'sub ad';
+	grid-template-columns: 1fr 1fr;
+}
+.subCompContainer {
+	grid-area: sub;
+}
+
+.adContainer {
+	grid-area: ad;
+}

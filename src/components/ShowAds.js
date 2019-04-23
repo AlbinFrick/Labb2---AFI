@@ -11,16 +11,14 @@ export class ShowAds extends Component {
 		const data = await response.json();
 		this.setState({ ads: data });
 		console.log(this.state.ads);
-    }
-    
-    getPoster(subscriber, poster) {
-        if(subscriber) {
-            return 
-        } else {
+	}
 
-        }
-
-    }
+	getPoster(subscriber, poster) {
+		if (subscriber) {
+			return;
+		} else {
+		}
+	}
 
 	render() {
 		if (this.state.loading) {
@@ -37,7 +35,6 @@ export class ShowAds extends Component {
 							<div>{ad.title}</div>
 							<div>{ad.price}</div>
 							<div>{ad.content}</div>
-                            <div>{getPoster(ad.subscriber, ad.poster)}
 							<br />
 						</div>
 					))}

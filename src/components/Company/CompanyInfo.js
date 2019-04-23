@@ -5,7 +5,6 @@ const url = localStorage.getItem('AdvertAPIAddress');
 
 export class CompanyInfo extends Component {
 	state = {
-		companies: null,
 		postedBy: null,
 		nameErr: '',
 		orgNumberErr: '',
@@ -17,14 +16,6 @@ export class CompanyInfo extends Component {
 		delCityErr: '',
 		delZipCodeErr: ''
 	};
-
-	componentDidMount() {
-		Axios.get(url + '/api/companies/get').then(res => {
-			this.setState({
-				companies: res.data
-			});
-		});
-	}
 
 	handleTextinput = e => {
 		this.setState({
@@ -132,18 +123,21 @@ export class CompanyInfo extends Component {
 				delCity,
 				delZipCode
 			} = this.state;
-			let company = Object.assign({}, this.state.companies[0]);
-			company.name = name;
-			company.orgNumber = orgNumber;
-			company.phoneNumber = phoneNumber;
-			company.paymentLocation.address = payAddress;
-			company.paymentLocation.city = payCity;
-			company.paymentLocation.zipCode = payZipCode;
-			company.deliverLocation.address = delAddress;
-			company.deliverLocation.city = delCity;
-			company.deliverLocation.zipCode = delZipCode;
-			let companies = [...this.state.companies, company];
-			this.setState({ companies });
+			let company = {
+				name: name,
+				orgNumber: orgNumber,
+				phoneNumber: phoneNumber,
+				deliverLocation: {
+					address: delAddress,
+					city: delCity,
+					zipCode: delZipCode
+				},
+				paymentLocation: {
+					address: payAddress,
+					city: payCity,
+					zipCode: payZipCode
+				}
+			};
 
 			Axios.post(url + '/api/companies/add', { company })
 				.then(res => {
