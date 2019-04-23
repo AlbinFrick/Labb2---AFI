@@ -16,8 +16,9 @@
 	font-size: 1.2vw;
 	color: white;
 	width: 40vw;
-	background: rgba(40, 44, 54, 0.9);
+	background: rgba(61, 65, 73);
 	border-bottom: 0.5vw solid rgba(40, 44, 54);
+	border-radius: 10px;
 }
 
 .adCard > h3 {
@@ -41,4 +42,30 @@
 	top: 20vw;
 	background: rgba(40, 44, 54, 0.9);
 	border-radius: 100%;
+	animation-name: load;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-delay: 0;
+	animation-timing-function: linear;
+}
+
+@keyframes load {
+	0% {
+		left: 47.5vw;
+	}
+	20% {
+		left: 54vw;
+	}
+	25% {
+		left: 54.5vw;
+	}
+	70% {
+		left: 41vw;
+	}
+	75% {
+		left: 40.5vw;
+	}
+	100% {
+		left: 47.5vw;
+	}
 }
