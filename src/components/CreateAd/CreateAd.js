@@ -51,7 +51,7 @@ export class CreateAd extends Component {
 		return (
 			<div className="createAd">
 				<div className="subCompContainer">
-					<h4>Are you a subscriber?</h4>
+					<h2>Are you a subscriber?</h2>
 					<form className="subQuery">
 						<label>Yes</label>
 						<input

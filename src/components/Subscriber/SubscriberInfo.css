@@ -1,8 +1,54 @@
-.subNumberContainer form {
+.subscriberInfo {
+	text-align: left;
 	margin-top: 2vw;
 }
+
+.names p,
+.attributes p {
+	border-bottom: 1px solid #ccc;
+}
+
+.names p {
+	font-weight: 500;
+}
+
+.attributes p {
+	font-weight: 200;
+}
+
+.subscriberInfo .names {
+	width: 41%;
+	display: inline-block;
+	margin-left: 4vw;
+}
+
+.subscriberInfo .attributes {
+	width: 41%;
+	float: right;
+	margin-right: 4vw;
+	text-align: right;
+}
+
+.subscriberInfo button {
+	float: right;
+	margin-right: 10vw;
+}
+
+.subNumberContainer form {
+	margin: 2vw 4vw;
+	text-align: left;
+	height: auto;
+}
+
 .subNumberContainer form label {
-	margin-right: 3vw;
+	font-weight: 500;
+}
+.subNumberContainer form input {
+	float: right;
+	margin-top: -0.5vw;
+	padding: 0.5vw;
+	border: 1px solid #ccc;
+	border-radius: 3px;
 }
 
 .subscriberInfo form {

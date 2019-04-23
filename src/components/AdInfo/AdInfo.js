@@ -90,7 +90,7 @@ export class AdInfo extends Component {
 		return (
 			<div className="adInfo">
 				{this.renderRedirect()}
-				<h1>Advert Information</h1>
+				<h2>Advert Information</h2>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						name="title"
