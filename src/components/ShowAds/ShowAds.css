@@ -1,0 +1,23 @@
+.oscar {
+	background: blue;
+}
+
+.adCard {
+	position: relative;
+	text-align: left;
+	float: left;
+	border: solid black 1px;
+	width: 50%;
+	margin: 1vw;
+	padding: 2vw;
+	background: rgb(240, 240, 240);
+}
+
+.adCard > h3 {
+	margin: 0 0 1vw 0;
+}
+
+.postedBy {
+	position: absolute;
+	bottom: 1vw;
+}
