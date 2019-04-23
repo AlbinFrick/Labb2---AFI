@@ -5,6 +5,8 @@
 }
 .subCompContainer {
 	grid-area: sub;
+	height: 85vh;
+	border-right: 1px solid black;
 }
 
 .adContainer {

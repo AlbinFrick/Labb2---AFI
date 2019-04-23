@@ -8,14 +8,24 @@
 .subscriberInfo form {
 	width: auto;
 	height: auto;
-	margin: 3vw auto;
+	margin: 3vw 2vw;
 	display: grid;
-	grid-gap: 2vw;
+	grid-gap: 1vw;
 	grid-template-areas:
 		'fname address'
+		'fnameerr addresserr'
 		'lname zipcode'
+		'lnameerr zipcodeerr'
 		'phonenumber city'
+		'phonenumbererr cityerr'
 		'. button';
+}
+
+.subscriberInfo form .errormessage {
+	color: red;
+	padding: 0;
+	margin: 0;
+	font-size: 1.25vw;
 }
 
 .subscriberInfo form input {
@@ -51,4 +61,28 @@
 
 .city {
 	grid-area: city;
+}
+
+#firstnameerr {
+	grid-area: fnameerr;
+}
+
+#lastnameerr {
+	grid-area: lnameerr;
+}
+
+#phonenumbererr {
+	grid-area: phonenumbererr;
+}
+
+#addresserr {
+	grid-area: addresserr;
+}
+
+#cityerr {
+	grid-area: cityerr;
+}
+
+#zipcodeerr {
+	grid-area: zipcodeerr;
 }

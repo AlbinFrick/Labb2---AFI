@@ -14,7 +14,12 @@ export class SubscriberInfo extends Component {
 		address: '',
 		zipcode: '',
 		city: '',
-		zipcodeErr: ''
+		firstnameErr: '',
+		lastnameErr: '',
+		phonenumberErr: '',
+		addressErr: '',
+		zipcodeErr: '',
+		cityErr: ''
 	};
 
 	componentDidMount() {
@@ -35,7 +40,7 @@ export class SubscriberInfo extends Component {
 						lastname: res.data.lastname,
 						phonenumber: res.data.phonenumber,
 						address: res.data.address,
-						zipcode: res.data.zipcode,
+						zipcode: res.data.zipcode + '',
 						city: res.data.city
 					});
 					this.props.changePostedBy(res.data._id);
@@ -70,7 +75,12 @@ export class SubscriberInfo extends Component {
 				} else if (this.state.subNumber.length < 1) {
 					this.props.changePostedBy(null);
 					this.setState({
-						firstname: ''
+						firstname: '',
+						lastname: '',
+						phonenumber: '',
+						address: '',
+						zipcode: '',
+						city: ''
 					});
 				}
 			}
@@ -84,16 +94,66 @@ export class SubscriberInfo extends Component {
 	};
 
 	validate = () => {
-		let { zipcode } = this.state;
+		let {
+			firstname,
+			lastname,
+			phonenumber,
+			address,
+			zipcode,
+			city
+		} = this.state;
+
+		let firstnameErr = '';
+		let lastnameErr = '';
+		let phonenumberErr = '';
+		let addressErr = '';
 		let zipcodeErr = '';
-		if (zipcode[0].length < 4) {
+		let cityErr = '';
+
+		if (firstname.toString().length < 1) {
+			firstnameErr = 'This field is required';
+		}
+
+		if (lastname.toString().length < 1) {
+			lastnameErr = 'This field is required';
+		}
+
+		if (phonenumber.toString().length < 1) {
+			phonenumberErr = 'This field is required';
+		}
+
+		if (address.toString().length < 1) {
+			addressErr = 'This field is required';
+		}
+
+		if (city.toString().length < 1) {
+			cityErr = 'This field is required';
+		}
+
+		if (zipcode.toString().length < 1) {
+			zipcodeErr = 'This field is required';
+		} else if (zipcode.toString().length < 5) {
 			zipcodeErr = 'The zipcode must be five numbers';
 		}
 		if (isNaN(zipcode[0])) {
 			zipcodeErr = 'The zipcode can only contain numbers';
 		}
-		this.setState({ zipcodeErr });
-		if (zipcodeErr) {
+		this.setState({
+			firstnameErr,
+			lastnameErr,
+			phonenumberErr,
+			addressErr,
+			zipcodeErr,
+			cityErr
+		});
+		if (
+			firstnameErr ||
+			lastnameErr ||
+			phonenumberErr ||
+			addressErr ||
+			zipcodeErr ||
+			cityErr
+		) {
 			return false;
 		}
 		return true;
@@ -147,8 +207,10 @@ export class SubscriberInfo extends Component {
 							type="text"
 							value={firstname}
 							onChange={this.handleTextinput}
-						/>{' '}
-						<br />
+						/>
+						<div id="firstnameerr" className="errormessage">
+							{this.state.firstnameErr}
+						</div>
 						<input
 							className="lastname"
 							name="lastname"
@@ -156,7 +218,9 @@ export class SubscriberInfo extends Component {
 							value={lastname}
 							onChange={this.handleTextinput}
 						/>
-						<br />
+						<div id="lastnameerr" className="errormessage">
+							{this.state.lastnameErr}
+						</div>
 						<input
 							className="phonenumber"
 							name="phonenumber"
@@ -164,7 +228,9 @@ export class SubscriberInfo extends Component {
 							value={phonenumber}
 							onChange={this.handleTextinput}
 						/>
-						<br />
+						<div id="phonenumbererr" className="errormessage">
+							{this.state.phonenumberErr}
+						</div>
 						<input
 							className="address"
 							name="address"
@@ -172,7 +238,9 @@ export class SubscriberInfo extends Component {
 							value={address}
 							onChange={this.handleTextinput}
 						/>
-						<br />
+						<div id="addresserr" className="errormessage">
+							{this.state.addressErr}
+						</div>
 						<input
 							className="zipcode"
 							name="zipcode"
@@ -180,8 +248,9 @@ export class SubscriberInfo extends Component {
 							value={zipcode}
 							onChange={this.handleTextinput}
 						/>
-						{this.state.zipcodeErr}
-						<br />
+						<div id="zipcodeerr" className="errormessage">
+							{this.state.zipcodeErr}
+						</div>
 						<input
 							className="city"
 							name="city"
@@ -189,7 +258,9 @@ export class SubscriberInfo extends Component {
 							value={city}
 							onChange={this.handleTextinput}
 						/>
-						<br />
+						<div id="cityerr" className="errormessage">
+							{this.state.cityErr}
+						</div>
 						<button type="submit">Submit</button>
 					</form>
 				</div>
@@ -204,7 +275,11 @@ export class SubscriberInfo extends Component {
 	};
 
 	renderInfo = () => {
-		if (this.state.subNumber && this.state.firstname && !this.state.edit) {
+		if (
+			this.state.subNumber &&
+			(this.state.firstname || this.state.lastname) &&
+			!this.state.edit
+		) {
 			const {
 				firstname,
 				lastname,

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import './AdInfo.css';
+import { Redirect } from 'react-router-dom';
 const url = localStorage.getItem('AdvertAPIAddress');
 
 export class AdInfo extends Component {
 	state = {
+		redirect: false,
 		title: '',
 		content: '',
 		adPrice: null,
@@ -64,6 +66,7 @@ export class AdInfo extends Component {
 			})
 				.then(res => {
 					console.log('New advert created');
+					this.setState({ redirect: true });
 				})
 				.catch(err => {
 					console.log(err);
@@ -71,9 +74,22 @@ export class AdInfo extends Component {
 		}
 	};
 
+	setRedirect = () => {
+		this.setState({
+			redirect: true
+		});
+	};
+
+	renderRedirect = () => {
+		if (this.state.redirect) {
+			return <Redirect to="/showAd" />;
+		}
+	};
+
 	render() {
 		return (
 			<div className="adInfo">
+				{this.renderRedirect()}
 				<h1>Advert Information</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input
@@ -84,16 +100,6 @@ export class AdInfo extends Component {
 						onChange={this.handleTextinput}
 					/>
 					{this.state.titleErr}
-					<br />
-					<input
-						name="content"
-						className="content"
-						type="textarea"
-						placeholder="Content"
-						onChange={this.handleTextinput}
-					/>
-					{this.state.contentErr}
-					<br />
 					<input
 						name="price"
 						className="price"
@@ -102,6 +108,17 @@ export class AdInfo extends Component {
 						onChange={this.handleTextinput}
 					/>
 					{this.state.priceErr}
+					<br />
+					<textarea
+						name="content"
+						className="content"
+						type="textare"
+						placeholder="Content"
+						onChange={this.handleTextinput}
+					/>
+					{this.state.contentErr}
+					<br />
+
 					<button type="submit">Submit</button>
 				</form>
 			</div>
