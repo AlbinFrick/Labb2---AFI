@@ -19,21 +19,21 @@ export class ShowAds extends Component {
 	}
 
 	async getAds() {
-		const url = 'http://130.239.237.126:5000/api/adverts/get';
+		const url = localStorage.getItem('AdvertsAPI') + '/api/adverts/get';
 		const response = await fetch(url);
 		const data = await response.json();
 		this.setState({ ads: data });
 	}
 
 	async getSubscibers() {
-		const url = 'http://localhost:3000/api/subscribers/get';
+		const url = localStorage.getItem('SubscribersAPI') + '/api/subscribers/get';
 		const response = await fetch(url);
 		const data = await response.json();
 		this.setState({ subscribers: data });
 	}
 
 	async getCompanies() {
-		const url = 'http://130.239.237.126:5000/api/companies/get';
+		const url = localStorage.getItem('AdvertsAPI') + '/api/companies/get';
 		const response = await fetch(url);
 		const data = await response.json();
 		this.setState({ companies: data });

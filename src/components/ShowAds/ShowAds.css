@@ -39,5 +39,6 @@
 	height: 5vw;
 	left: 47.5vw;
 	top: 20vw;
-	background: black;
+	background: rgba(40, 44, 54, 0.9);
+	border-radius: 100%;
 }

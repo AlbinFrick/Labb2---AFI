@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import CreateAd from './components/CreateAd/CreateAd';
-import ShowAds from './components/ShowAds';
+import ShowAds from './components/ShowAds/ShowAds';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-localStorage.setItem('SubscriberAPIAddress', 'http://130.239.217.227:3000');
-localStorage.setItem('AdvertAPIAddress', 'http://localhost:5000');
+localStorage.setItem('SubscribersAPI', 'http://130.239.217.227:3000');
+localStorage.setItem('AdvertsAPI', 'http://130.239.237.126:5000');
 
 class App extends Component {
 	render() {
