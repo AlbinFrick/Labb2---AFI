@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ShowAds.css';
+import { timeout } from 'q';
 
 export class ShowAds extends Component {
 	state = {
@@ -13,7 +14,7 @@ export class ShowAds extends Component {
 		await this.getAds();
 		await this.getSubscibers();
 		await this.getCompanies();
-		await this.setState({
+		this.setState({
 			loading: false
 		});
 	}
