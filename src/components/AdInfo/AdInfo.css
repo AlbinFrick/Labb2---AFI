@@ -7,10 +7,14 @@
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: 1fr 1fr 6fr 1fr;
 	grid-template-areas:
-		'title . . '
-		'price . .'
+		'title titleError . '
+		'price priceError .'
 		'cont cont cont'
-		'.  . button';
+		'contentError  . button';
+}
+
+.errormessage {
+	color: red;
 }
 
 .adInfo form input,
@@ -35,4 +39,16 @@ textarea {
 
 .adInfo .content {
 	grid-area: cont;
+}
+
+#titleErr {
+	grid-area: titleError;
+}
+
+#priceErr {
+	grid-area: priceError;
+}
+
+#contentErr {
+	grid-area: contentError;
 }

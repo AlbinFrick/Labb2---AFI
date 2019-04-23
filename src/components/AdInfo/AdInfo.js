@@ -35,7 +35,7 @@ export class AdInfo extends Component {
 		}
 
 		if (!content) {
-			contentErr = 'This field is required';
+			contentErr = 'This area is required';
 		}
 		if (!price) {
 			priceErr = 'This field is required';
@@ -99,7 +99,9 @@ export class AdInfo extends Component {
 						placeholder="Title"
 						onChange={this.handleTextinput}
 					/>
-					{this.state.titleErr}
+					<div id="titleErr" className="errormessage">
+						{this.state.titleErr}
+					</div>
 					<input
 						name="price"
 						className="price"
@@ -107,7 +109,9 @@ export class AdInfo extends Component {
 						placeholder="Price for your product"
 						onChange={this.handleTextinput}
 					/>
-					{this.state.priceErr}
+					<div id="priceErr" className="errormessage">
+						{this.state.priceErr}
+					</div>
 					<br />
 					<textarea
 						name="content"
@@ -116,7 +120,9 @@ export class AdInfo extends Component {
 						placeholder="Content"
 						onChange={this.handleTextinput}
 					/>
-					{this.state.contentErr}
+					<div id="contentErr" className="errormessage">
+						{this.state.contentErr}
+					</div>
 					<br />
 
 					<button type="submit">Submit</button>
