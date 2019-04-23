@@ -5,15 +5,17 @@ export class ShowAds extends Component {
 	state = {
 		ads: [],
 		subscribers: [],
-		companies: []
+		companies: [],
+		loading: true
 	};
 
 	async componentDidMount() {
 		await this.getAds();
 		await this.getSubscibers();
 		await this.getCompanies();
-
-		console.log(this.state);
+		await this.setState({
+			loading: false
+		});
 	}
 
 	async getAds() {
@@ -57,14 +59,13 @@ export class ShowAds extends Component {
 	}
 
 	render() {
-		if (!this.state.ads || !this.state.ads.length) {
-			return <div>No ads found.</div>;
-		} else if (!this.state.subscribers || !this.state.companies) {
+		if (this.state.loading) {
+			return <div className="loading" />;
+		} else if (!this.state.ads || !this.state.ads.length) {
 			return <div>No ads found.</div>;
 		} else {
 			return (
-				<div>
-					<br />
+				<div className="ads">
 					{this.state.ads.map(ad => (
 						<div key={ad._id} className="adCard">
 							<h3>{ad.title}</h3>
@@ -72,9 +73,14 @@ export class ShowAds extends Component {
 							<hr />
 							<div>{ad.content}</div>
 							<hr />
-							<div class="postedBy">
-								Posted by: <br />
+							<div className="postedBy">
 								{this.getPoster(ad.subscriber, ad.postedBy)}
+								<div
+									className="poster"
+									style={ad.subscriber ? subStyle : compStyle}
+								>
+									{ad.subscriber ? 'Subscriber' : 'Company'}
+								</div>
 							</div>
 							<br />
 							<br />
@@ -86,5 +92,15 @@ export class ShowAds extends Component {
 		}
 	}
 }
+
+//style={ad.subscriber ? subStyle : compStyle}
+
+var subStyle = {
+	color: 'yellow'
+};
+
+var compStyle = {
+	color: 'white'
+};
 
 export default ShowAds;

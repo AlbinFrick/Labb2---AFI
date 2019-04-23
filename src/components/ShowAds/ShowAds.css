@@ -1,16 +1,23 @@
-.oscar {
-	background: blue;
+.ads {
+	position: relative;
+	display: grid;
+	justify-content: space-evenly;
+	grid-gap: 1vw;
+	margin: 1vw;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .adCard {
 	position: relative;
 	text-align: left;
-	float: left;
-	border: solid black 1px;
-	width: 50%;
-	margin: 1vw;
 	padding: 2vw;
-	background: rgb(240, 240, 240);
+	word-wrap: break-word;
+	font-size: 1.2vw;
+	color: white;
+	width: 40vw;
+	background: rgba(40, 44, 54, 0.9);
+	border-bottom: 0.5vw solid rgba(40, 44, 54);
 }
 
 .adCard > h3 {
@@ -20,4 +27,17 @@
 .postedBy {
 	position: absolute;
 	bottom: 1vw;
+}
+
+.poster {
+	font-style: italic;
+}
+
+.loading {
+	position: absolute;
+	width: 5vw;
+	height: 5vw;
+	left: 47.5vw;
+	top: 20vw;
+	background: black;
 }
