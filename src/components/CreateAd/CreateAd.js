@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import SubscriberInfo from './Subscriber/SubscriberInfo';
-import CompanyInfo from './Comapany/CompanyInfo';
-import AdInfo from './AdInfo';
+import SubscriberInfo from '../Subscriber/SubscriberInfo';
+import CompanyInfo from '../Company/CompanyInfo';
+import AdInfo from '../AdInfo/AdInfo';
+import './CreateAd.css';
 
 export class CreateAd extends Component {
 	state = {
@@ -48,27 +49,29 @@ export class CreateAd extends Component {
 
 	render() {
 		return (
-			<div>
-				<h4>Are you a subscriber?</h4>
-				<form className="subQuery">
-					<label>Yes</label>
-					<input
-						name="subQuery"
-						type="radio"
-						value={true}
-						onChange={this.handleSubChange}
-					/>
-					<label>No</label>
-					<input
-						name="subQuery"
-						type="radio"
-						value={false}
-						onChange={this.handleSubChange}
-					/>
-				</form>
-				{this.renderCompanyForm()}
-				{this.renderSubScriberInfo()}
-				{this.renderAdvertForm()}
+			<div className="createAd">
+				<div className="subCompContainer">
+					<h4>Are you a subscriber?</h4>
+					<form className="subQuery">
+						<label>Yes</label>
+						<input
+							name="subQuery"
+							type="radio"
+							value={true}
+							onChange={this.handleSubChange}
+						/>
+						<label>No</label>
+						<input
+							name="subQuery"
+							type="radio"
+							value={false}
+							onChange={this.handleSubChange}
+						/>
+					</form>
+					{this.renderCompanyForm()}
+					{this.renderSubScriberInfo()}
+				</div>
+				<div className="adContainer">{this.renderAdvertForm()}</div>
 			</div>
 		);
 	}

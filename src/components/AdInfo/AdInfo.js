@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import './AdInfo.css';
 const url = localStorage.getItem('AdvertAPIAddress');
 
 export class AdInfo extends Component {
@@ -72,11 +73,12 @@ export class AdInfo extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="adInfo">
 				<h1>Advert Information</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						name="title"
+						className="title"
 						type="text"
 						placeholder="Title"
 						onChange={this.handleTextinput}
@@ -85,7 +87,8 @@ export class AdInfo extends Component {
 					<br />
 					<input
 						name="content"
-						type="text"
+						className="content"
+						type="textarea"
 						placeholder="Content"
 						onChange={this.handleTextinput}
 					/>
@@ -93,6 +96,7 @@ export class AdInfo extends Component {
 					<br />
 					<input
 						name="price"
+						className="price"
 						type="number"
 						placeholder="Price for your product"
 						onChange={this.handleTextinput}

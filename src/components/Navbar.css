@@ -1,0 +1,25 @@
+nav {
+	width: 100%;
+	height: auto;
+	background-color: rgb(40, 44, 55);
+}
+
+nav ul {
+	width: auto;
+	height: 100%;
+	margin: 0;
+	list-style-type: none;
+}
+
+nav ul li {
+	background-color: rgba(0, 0, 0, 0.4);
+	display: inline-block;
+	padding: 1vw;
+	margin: 1.5vw;
+	border-radius: 10px;
+}
+
+nav ul li a {
+	text-decoration: none;
+	color: white;
+}
