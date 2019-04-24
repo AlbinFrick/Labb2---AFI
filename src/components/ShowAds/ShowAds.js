@@ -69,7 +69,7 @@ export class ShowAds extends Component {
 					{this.state.ads.map(ad => (
 						<div key={ad._id} className="adCard">
 							<h3>{ad.title}</h3>
-							<div>${ad.price}</div>
+							<div>{'$' + ad.price}</div>
 							<hr />
 							<div>{ad.content}</div>
 							<hr />
@@ -80,6 +80,8 @@ export class ShowAds extends Component {
 									style={ad.subscriber ? subStyle : compStyle}
 								>
 									{ad.subscriber ? 'Subscriber' : 'Company'}
+									<br />
+									{'Ad price: $' + ad.adPrice}
 								</div>
 							</div>
 							<br />

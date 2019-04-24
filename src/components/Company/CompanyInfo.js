@@ -110,7 +110,6 @@ export class CompanyInfo extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log(this.state.name);
 		if (this.validate()) {
 			const {
 				name,
@@ -170,9 +169,7 @@ export class CompanyInfo extends Component {
 						placeholder="Organisation Number"
 						onChange={this.handleTextinput}
 					/>
-					<div className="errorMessage">
-						{this.state.orgNumberErr}
-					</div>
+					<div className="errorMessage">{this.state.orgNumberErr}</div>
 					<br />
 					<input
 						className="phoneNumber"
@@ -181,9 +178,7 @@ export class CompanyInfo extends Component {
 						placeholder="Phone Number"
 						onChange={this.handleTextinput}
 					/>
-					<div className="errorMessage">
-						{this.state.phoneNumberErr}
-					</div>
+					<div className="errorMessage">{this.state.phoneNumberErr}</div>
 					<br />
 					<label className="payLabel">Payment location</label>
 					<input
@@ -193,9 +188,7 @@ export class CompanyInfo extends Component {
 						placeholder="Address"
 						onChange={this.handleTextinput}
 					/>
-					<div className="errorMessage">
-						{this.state.payAddressErr}
-					</div>
+					<div className="errorMessage">{this.state.payAddressErr}</div>
 					<br />
 					<input
 						className="payZipCode"
@@ -204,9 +197,7 @@ export class CompanyInfo extends Component {
 						placeholder="Zipcode"
 						onChange={this.handleTextinput}
 					/>
-					<div className="errorMessage">
-						{this.state.payZipCodeErr}
-					</div>
+					<div className="errorMessage">{this.state.payZipCodeErr}</div>
 					<br />
 					<input
 						className="payCity"
@@ -225,9 +216,7 @@ export class CompanyInfo extends Component {
 						placeholder="Address"
 						onChange={this.handleTextinput}
 					/>
-					<div className="errorMessage">
-						{this.state.delAddressErr}
-					</div>
+					<div className="errorMessage">{this.state.delAddressErr}</div>
 					<br />
 					<input
 						className="delZipCode"
@@ -236,9 +225,7 @@ export class CompanyInfo extends Component {
 						placeholder="Zipcode"
 						onChange={this.handleTextinput}
 					/>
-					<div className="errorMessage">
-						{this.state.delZipCodeErr}
-					</div>
+					<div className="errorMessage">{this.state.delZipCodeErr}</div>
 					<br />
 					<input
 						className="delCity"
